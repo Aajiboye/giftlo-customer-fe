@@ -1,0 +1,58 @@
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: 'wght' 900.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 900.0)
+
+*/
+
+@font-face {
+  font-family: 'Eudoxus Sans';
+  src: url('../../public/fonts/EudoxusSans-ExtraBold.woff2') format('woff2');
+  font-weight: 800 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eudoxus Sans';
+  src: url('../../public/fonts/EudoxusSans-Bold.woff2') format('woff2');
+  font-weight: 600 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eudoxus Sans';
+  src: url('../../public/fonts/EudoxusSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eudoxus Sans';
+  src: url('../../public/fonts/EudoxusSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eudoxus Sans';
+  src: url('../../public/fonts/EudoxusSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eudoxus Sans';
+  src: url('../../public/fonts/EudoxusSans-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}

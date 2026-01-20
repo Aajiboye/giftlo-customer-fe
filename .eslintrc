@@ -1,0 +1,41 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "plugins": ["@stylistic", "@typescript-eslint", "react", "jest"],
+  "parser": "@typescript-eslint/parser",
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "next/core-web-vitals",
+    "plugin:storybook/recommended",
+    "prettier"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/ban-types": ["off"],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "ignoreRestSiblings": true }
+    ],
+    "@typescript-eslint/ban-ts-comment": ["off"],
+    "@next/next/no-img-element": ["off"],
+    "import/no-anonymous-default-export": ["off"],
+    "react-hooks/exhaustive-deps": ["off"],
+    "react/no-unescaped-entities": 0
+  },
+  "ignorePatterns": ["!.storybook"]
+}

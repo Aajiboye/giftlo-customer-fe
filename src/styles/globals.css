@@ -1,0 +1,134 @@
+@import './font.module.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --heading: 'Eudoxus Sans', sans-serif;
+
+  --radius: 4px;
+}
+
+body {
+  font-family: 'geist', sans-serif, 'Inter';
+  scroll-behavior: smooth;
+  background-color: theme('colors.background'); /* Default background */
+  color: theme('colors.primary'); /* Default text color */
+  user-select: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style the scrollbar container */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+/* Style the scrollbar track (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Style the scrollbar thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the thumb */
+  border-radius: 10px; /* Optional: Rounded corners for the thumb */
+  border: 3px solid #f0f0f0; /* Optional: Add a border around the thumb */
+}
+
+/* Optional: Hover effect for the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when the user hovers over the thumb */
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+a {
+  color: #004c4e !important;
+  font-weight: 600 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.editor {
+  border: none !important;
+  padding: 0px !important;
+}
+.editor ol,
+.editor ul {
+  list-style: revert !important;
+}
+
+.editor select {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+@layer base {
+}
+
+/* Pagination container */
+.gift-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Inactive bullet = thin line */
+.gift-bullet {
+  width: 48px;
+  height: 3px;
+  background: #e5e7eb; /* gray-200 */
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Active bullet = highlighted line */
+.gift-bullet-active {
+  background: #6d28d9; /* purple (adjust to match your brand) */
+}
+

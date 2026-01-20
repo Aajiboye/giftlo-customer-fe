@@ -1,1 +1,1 @@
-# giftlo-customer-fe
+Next app Frontend
