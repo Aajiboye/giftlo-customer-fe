@@ -70,7 +70,7 @@ export default function SignIn() {
       toast.success('Login Successful - Welcome to Giftlo');
 
 
-      push("/app/dashboard");
+      push("/app/home");
 
     } catch (error: any) {
 
