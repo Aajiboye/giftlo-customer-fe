@@ -28,7 +28,7 @@ export default function CategoryCard({
             <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
                     <h3 className="text-sm text-[#3B006B]">
-                        {text}
+                        {text.toUpperCase()}
                     </h3>
                 </div>
                 <p className="text-sm text-gray-500">

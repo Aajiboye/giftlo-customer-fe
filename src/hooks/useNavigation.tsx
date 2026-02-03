@@ -23,9 +23,17 @@ export const useNavigation = () => {
     push(`/email-sent`, `/email-sent`);
   };
 
-  
+  const navigateToProfileEdit = () => {
+    push(`/home/profile/edit`, `/home/profile/edit`);
+  };
+
+  const navigateToProfile = () => {
+    push(`/home/profile`, `/home/profile`);
+  };
 
   const navigateBack = () => back();
+
+
 
   return {
     navigateBack,
@@ -35,7 +43,9 @@ export const useNavigation = () => {
     navigateToSignin,
     navigateToSignup,
     navigateToResetPassword,
-    navigateToEmailSent
-  
+    navigateToEmailSent,
+    navigateToProfile,
+    navigateToProfileEdit
+
   };
 };

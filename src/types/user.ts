@@ -1,33 +1,30 @@
 
 export type User = {
-  passportId: string;
-  firstName: string;
-  lastName: string;
-  otherName: string;
-  businessId: string;
-  addedBy: string;
-  addedOn: string;
-  applicationId: string;
-  businessPosition: string;
-  gender: number;
-  id: number;
-  isActive: boolean;
-  isDelete: boolean;
-  phoneNumber: string;
-  lastClientIpAddress: string;
-  lastLogin: string;
-  marital: number;
-  processStage: number;
-  updatedBy: string;
-  updatedOn: string;
-  emailAddress?: string;
-  token?: string | null;
-  refreshToken?: string | null;
-  phone?: string;
-  profileCompleted?:boolean;
+  fullName: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  id: number,
+  phone: string,
+  avatarUrl: string,
+  address?: string,
+  token?: string
+  userRole?: "CUSTOMER" | "VENDOR"
+  verified?: boolean,
+  gender?:"male"| "female"| "other";
+  dob?:string;
+  country?:string;
+  state?:string;
+  localGovernmentArea?:string;
+  postalCode?:string;
+  termsAccepted?:boolean;
+  notificationPreferences?: {
+    allMedium: true,
+    emailNotification: true,
+    smsNotification: true,
+    pushNotification: true
+  }
 };
-
-
 
 import { getLocalStorage, getLocalStorageItem } from '@/utilities/localStorage';
 import Cookies from 'js-cookie';
@@ -55,7 +52,7 @@ export const logout = async (isUnAuthorized: boolean = false) => {
     let user: User | null = getLocalStorageItem('giftlo_user');
 
     if (!isUnAuthorized) {
-      let res: any = await logoutEverywhere(user?.emailAddress);
+      let res: any = await logoutEverywhere(user?.email);
       if (res?.data) {
         Cookies.remove('giftlo_token');
         localStorage.removeItem('giftlo_user');

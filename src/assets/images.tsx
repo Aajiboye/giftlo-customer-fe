@@ -8,6 +8,7 @@ const images = {
   laptop: "/images/laptop.svg",
   mask: "/images/mask.svg",
   toy: "/images/toy.svg",
+  profile: "/images/profile.svg",
   beddings: "/images/beddings.svg",
   sofa: "/images/sofa.svg",
   product_a: "/images/products/a.svg",

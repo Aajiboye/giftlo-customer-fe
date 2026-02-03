@@ -2,7 +2,9 @@ import React from 'react';
 import { SideBar, NavBar } from '@/components';
 import useToggle from '../Nav/useToggle';
 import { useRouter } from 'next/router';
-import { cn } from '@/lib/utils';
+import PageNav from '../common/PageNav';
+import Footer from '../Nav/Footer';
+import MobileSideBar from '../Nav/MobileSidebar';
 
 
 export default function DashboardLayout({
@@ -18,12 +20,17 @@ export default function DashboardLayout({
   return (
 
     <div className="w-full overflow-x-hidden">
-      <NavBar show={show} toggle={toggle} />
-     
-        <main className="">
-          
-          {children}
-        </main>
+      <NavBar show={show} toggle={toggle}/>
+
+      <main className="min-h-[80vh]">
+        <MobileSideBar show={show} toggle={toggle}/>
+        <PageNav />
+
+        {children}
+      </main>
+
+      <Footer />
+
     </div>
   );
 }

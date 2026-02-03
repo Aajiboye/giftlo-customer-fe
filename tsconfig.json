@@ -32,7 +32,6 @@
     "**/*.tsx",
     "src/components/Sidebar/SidebarHome.jsx",
     "src/components/Sidebar/classNames.js",
-    "src/pages/app/risk/rr-questions/OOR/[id]/view-questions"
   ],
   "exclude": [
     "node_modules"

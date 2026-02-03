@@ -25,3 +25,8 @@ export const getTimeElapsed = (date: Date | string) => {
     return `${years} years ago`;
   }
 };
+
+export const formatDateForInput = (date?: string) => {
+  if (!date) return "";
+  return new Date(date).toISOString().split("T")[0];
+};

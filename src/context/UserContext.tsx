@@ -1,11 +1,11 @@
 import { User } from '@/types/user';
-import { getLocalStorageItem } from '@/utilities/localStorage';
+import { getLocalStorageItem, setLocalStorageItem } from '@/utilities/localStorage';
 import { useFetchItem } from '@/utilities/useQuery';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface UserContextType {
   user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  setUser: (details: User) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -13,39 +13,42 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children
 }) => {
-  const [user, setUser] = useState<User>({
-    passportId: '',
+  const [user, setUserDetails] = useState<User>({
+
+    fullName: '',
     firstName: '',
     lastName: '',
-    otherName: '',
-    businessId: '',
-    addedBy: '',
-    addedOn: '',
-    applicationId: '',
-    businessPosition: '',
-    gender: 0,
+    email: '',
     id: 0,
-    isActive: false,
-    isDelete: false,
-    phoneNumber: '',
-    lastClientIpAddress: '',
-    lastLogin: '',
-    marital: 0,
-    processStage: 0,
-    updatedBy: '',
-    updatedOn: '',
-    token: '',
-    refreshToken:'',
+    phone: '',
+    avatarUrl: '',
   });
 
+  const { data: profileData } = useFetchItem(
+    'app',
+    ['get-user-profile'],
+    '/customer/profile'
+  );
 
-  
+  console.log({ profileData })
+
+
+
   useEffect(() => {
     const storedUser = getLocalStorageItem<User>('giftlo_user');
     if (storedUser) {
-      setUser(storedUser);
+      setUserDetails(storedUser);
     }
-  }, []);
+
+    if(profileData){
+      setUser({...user, ...profileData})
+    }
+  }, [profileData]);
+
+  const setUser = (details: User) => {
+    setUserDetails(details);
+    setLocalStorageItem('giftlo_user', details);
+  };
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

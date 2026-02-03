@@ -66,7 +66,7 @@ body {
 }
 
 a {
-  color: #004c4e !important;
+  color: #3D3D3D !important;
   font-weight: 600 !important;
 }
 
@@ -132,3 +132,25 @@ button:disabled {
   background: #6d28d9; /* purple (adjust to match your brand) */
 }
 
+/* src/styles/globals.css */
+
+/* Update your CSS for a more realistic feel */
+@keyframes giftlo-progress {
+  0% {
+    width: 32px;
+  }
+  30% {
+    width: 50%;
+  } /* Fast start */
+  70% {
+    width: 85%;
+  } /* Starts slowing down */
+  100% {
+    width: 95%;
+  } /* Crawls near the end until the page moves */
+}
+
+.animate-giftlo-progress {
+  /* Increase this to 5s or 8s to make it feel like "heavy lifting" is happening */
+  animation: giftlo-progress 8s cubic-bezier(0.1, 0.5, 0.5, 1) forwards;
+}

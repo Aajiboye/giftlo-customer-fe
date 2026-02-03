@@ -5,6 +5,7 @@ import { OnboardingQuestionContainer } from '@/components/onboarding/onboardingQ
 
 function QuestionnairePage() {
   return  <OnboardingQuestionContainer/>
+  
 }
 
 

@@ -11,9 +11,7 @@ export function WelcomeHeader() {
    * Filter(Boolean) removes any empty strings or nulls,
    * then join(' ') puts a space between them.
    */
-  const fullName = [user?.firstName, user?.otherName, user?.lastName]
-    .filter(Boolean)
-    .join(' ') || " Joy Chidera Emmanuel";
+  const fullName = user?.fullName
 
   return (
     <div className="flex flex-col items-center text-center w-full max-w-4xl mx-auto mb-8 ">

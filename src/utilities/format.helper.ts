@@ -1,3 +1,7 @@
+import { Currency } from "@/types/product";
+
+
+
 // Ensure the date is correctly formatted as ISO 8601 (with time)
   export const formatDateToISO8601 = (date: string) => {
     if (!date) return ''; // Avoid formatting if no date
@@ -5,6 +9,17 @@
     return isNaN(parsedDate.getTime()) ? '' : parsedDate.toISOString();
   };
   
+export const formatPrice = (value: number, currency: Currency = 'NGN'): string => {
+  if (value === undefined || value === null) return '';
+  
+  return new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(value);
+};
+
    // Helper to format a number with commas for display
    export const formatNumberWithCommas = (value: number): string => {
     if(!value) return '';

@@ -11,6 +11,8 @@ import { UserProvider } from '@/context/UserContext';
 import { Instrument_Sans } from 'next/font/google';
 import '@/styles/globals.css';
 import { Toaster } from 'sonner';
+import { ProductProvider } from '@/context/ProductContext';
+import { CentralProvider } from '@/context/CentralContext';
 
 // Font
 const instrumentSans = Instrument_Sans({
@@ -27,7 +29,7 @@ export default function App({
   pageProps,
   router
 }: AppProps & { router: NextRouter }) {
-  const isAppRoute = router.pathname.startsWith('/app');
+  const isAppRoute = router.pathname.startsWith('/home');
   const isOnboardingRoute = router.pathname.startsWith('/questionnaire');
 
   let Layout: React.ComponentType<any> = AuthLayout;
@@ -43,11 +45,16 @@ export default function App({
       <WindowWidthProvider>
         <div className={instrumentSans.variable}>
           <UserProvider>
-            {getLayout(
-              <Layout pageTitle={pageProps?.pageTitle}>
-                <Component {...pageProps} />
-              </Layout>
-            )}
+            <CentralProvider>
+              <ProductProvider>
+                {getLayout(
+                  <Layout pageTitle={pageProps?.pageTitle}>
+                    <Component {...pageProps} />
+                  </Layout>
+                )}
+              </ProductProvider>
+            </CentralProvider>
+
           </UserProvider>
 
           <Toaster

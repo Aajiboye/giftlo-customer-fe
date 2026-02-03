@@ -45,15 +45,15 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.giftlo.ng; font-src 'self'; connect-src 'self' https://api.giftlo.ng https://docs.google.com; frame-src 'self' https://docs.google.com https://view.officeapps.live.com https://api.giftlo.ng;"
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.giftlo.ng https://res.cloudinary.com; font-src 'self'; connect-src 'self' https://api.giftlo.ng https://docs.google.com; frame-src 'self' https://docs.google.com https://res.cloudinary.com https://view.officeapps.live.com https://api.giftlo.ng;"
           }
         ],
       },
     ];
   },
   images: {
-    domains: ["specta.blob.core.windows.net"],
-    path: `${assetPrefix}/_next/image/`,
+    domains: ["res.cloudinary.com"],
+    // path: `${assetPrefix}/_next/image/`,
   },
 };
 

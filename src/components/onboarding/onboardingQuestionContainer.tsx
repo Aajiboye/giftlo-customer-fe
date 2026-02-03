@@ -12,18 +12,10 @@ export function OnboardingQuestionContainer() {
   const q = useQuestionnaire();
   const { user } = useUser();
 
-  const displayName =
-    user?.firstName && user?.lastName
-      ? `${user.firstName} ${user.lastName}`
-      : user?.firstName ?? undefined;
+  const displayName = user?.fullName ?? 'N/A';
 
   return (
-    // Added min-h-screen to ensure the white background fills the mobile screen
     <section className="bg-white min-h-screen">
-      {/* 1. px-4 on mobile to prevent text touching edges, px-6 on PC.
-          2. space-y-8 on mobile to reduce scrolling, space-y-12 on PC.
-          3. pb-32 on mobile to ensure content isn't hidden behind sticky buttons.
-      */}
       <div className="mx-auto max-w-[1200px] px-4 md:px-6 pt-8 md:pt-14 pb-32 md:pb-20 text-white space-y-8 md:space-y-12">
 
         <WelcomeHeader />
