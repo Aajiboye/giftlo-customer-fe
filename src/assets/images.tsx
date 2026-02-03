@@ -11,6 +11,7 @@ const images = {
   profile: "/images/profile.svg",
   beddings: "/images/beddings.svg",
   sofa: "/images/sofa.svg",
+  order: "/images/order.svg",
   product_a: "/images/products/a.svg",
   product_b: "/images/products/b.svg",
   product_c: "/images/products/c.svg",
