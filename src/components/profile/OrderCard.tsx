@@ -44,7 +44,7 @@ export default function OrderCard({
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between py-5"
+            className="flex flex-col md:flex-row items-center justify-between py-5"
           >
             <div className="flex items-center gap-4">
               <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-gray-100">

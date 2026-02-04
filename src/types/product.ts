@@ -40,7 +40,7 @@ export const widthClassesByIndex: Record<number, string> = {
   4: "w-full md:w-[24%]",
   5: "w-full md:w-[50%]",
 };
-// src/types/product.ts
+
 
 export interface ProductImage {
   id: string;

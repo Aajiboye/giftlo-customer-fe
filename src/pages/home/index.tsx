@@ -11,13 +11,19 @@ import ProductCard from "@/components/common/ProductCard";
 import { LazyBackgroundImage } from '@/components/common/lazyLoadingBg';
 import { Button } from "@/components/ui/button";
 import { useProduct } from "@/context/ProductContext";
-import { widthClassesByIndex } from "@/types/product";
+// import { widthClassesByIndex } from "@/types/product";
 import { ChevronsRight } from "lucide-react";
 
+const widthClassesByIndex: Record<number, string> = {
+  2: "w-full md:w-[24%]",
+  3: "w-full md:w-[24%]",
+  4: "w-full md:w-[24%]",
+  5: "w-full md:w-[50%]",
+};
 
 const Page = () => {
   const [show, toggle] = useToggle();
-  const { categories, products, isFetchingProducts } = useProduct();
+  const { categories, products, isFetchingCategories } = useProduct();
 
 
   return <div className="flex flex-col space-y-2">
@@ -37,19 +43,26 @@ const Page = () => {
     <div className="p-2 md:p-8">
       <p className="text-xl mb-2 text-secondary">Popular Categories</p>
       <div className="flex justify-between flex-wrap">
-        {isFetchingProducts && [...Array(10).keys()].map(() => <CardLoader />)}
+        {isFetchingCategories ? [...Array(10).keys()].map(() => <CardLoader />)
 
-        {categories
-          ?.slice(0, 6)
-          .map((category, index) => (
-            <CategoryCard
-              key={category._id ?? index}
-              text={category.title}
-              imageSrc={category.categoryImageUrl}
-              itemCount={7000}
-              widthClass={widthClassesByIndex[index]}
-            />
-          ))}
+          :
+
+          categories
+            ?.slice(0, 6)
+            .map((category, index) => (
+              <CategoryCard
+                key={category._id ?? index}
+                text={category.title}
+                imageSrc={category.categoryImageUrl}
+                itemCount={7000}
+                widthClass={widthClassesByIndex[index]}
+              />
+            ))
+
+
+        }
+
+
 
       </div>
     </div>

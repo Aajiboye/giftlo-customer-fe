@@ -45,7 +45,7 @@ export default function ProfileSideBar() {
         },
         {
           name: 'Orders',
-          url: '/home/profile/orders',
+          url: '/home/orders',
           icon: <ShoppingCart />
         },
         {

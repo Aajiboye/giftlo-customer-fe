@@ -25,7 +25,7 @@ export default function OnboardingNavbar({ show, toggle }: any) {
 
           {/* LEFT */}
           <div className="flex items-center gap-2" onClick={toggle}>
-            <Menu className="h-6 w-6 text-[#3B006B] md:hidden cursor-pointer" />
+            <Menu className="h-6 w-6 text-[#3B006B] lg:hidden cursor-pointer" />
             <Image
               src="/images/logo.svg"
               alt="Giftlo"

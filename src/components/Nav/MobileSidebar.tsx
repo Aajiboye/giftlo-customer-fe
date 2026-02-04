@@ -26,7 +26,7 @@ export default function MobileSideBar({ show, toggle }: any) {
                     <X className="h-6 w-6 text-[#3B006B] md:hidden cursor-pointer" />
                 </div> */}
 
-                {pathname == '/home/profile' ? <ProfileSideBar /> : <SideBar />}
+                {pathname == '/home' ? <SideBar /> : <ProfileSideBar />}
 
                 {/* Mobile Sidebar */}
 

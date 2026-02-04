@@ -12,14 +12,15 @@ const Page = () => {
   const {navigateToProfileEdit} = useNavigation();
 
   return <div className="flex flex-col space-y-2">
-    <div className="flex min-h-[300px] p-2 md:p-8 space-x-4">
-      <div className="hidden md:block w-1/4">
+    <div className="flex min-h-[300px] p-2 md:p-8 lg:space-x-4">
+
+      <div className="hidden lg:block w-1/4">
        <ProfileSideBar />
 
       </div>
 
-      <div className="w-full space-y-4">
-        <p className="text-lg text-secondary">Profile</p>
+      <div className="w-full">
+        <p className="text-lg text-secondary mb-2">Profile</p>
 
         <ProfileCard profile={user} onEdit={navigateToProfileEdit}/>
       </div>

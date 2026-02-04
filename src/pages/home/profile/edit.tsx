@@ -10,9 +10,9 @@ const Page = () => {
   const [show, toggle] = useToggle();
   const { user } = useUser();
 
-  return <div className="flex flex-col space-y-2">
+  return <div className="flex flex-col lg:space-y-2">
     <div className="flex min-h-[300px] p-2 md:p-8 gap-8">
-      <div className="hidden md:block w-1/4">
+      <div className="hidden lg:block w-1/4">
         <ProfileSideBar />
 
       </div>
