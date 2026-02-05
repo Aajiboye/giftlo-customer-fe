@@ -13,10 +13,13 @@ import {
 } from "lucide-react";
 import MobileSearchModal from "@/components/modals/mobileSearchModal";
 import { useNavigation } from "@/hooks/useNavigation";
+import { useCart } from "@/context/CartContext";
 
 export default function OnboardingNavbar({ show, toggle }: any) {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
-  const {navigateToProfile} = useNavigation();
+  const { navigateToProfile, navigateToHome, navigateToCart } = useNavigation();
+  const { cart } = useCart();
+
 
   return (
     <>
@@ -24,14 +27,15 @@ export default function OnboardingNavbar({ show, toggle }: any) {
         <div className="mx-auto max-w-[1440px] px-4 md:px-10 py-0 md:py-8 h-[60px] md:h-[50px] flex items-center justify-between">
 
           {/* LEFT */}
-          <div className="flex items-center gap-2" onClick={toggle}>
-            <Menu className="h-6 w-6 text-[#3B006B] lg:hidden cursor-pointer" />
+          <div className="flex items-center gap-2">
+            <Menu className="h-6 w-6 text-[#3B006B] lg:hidden cursor-pointer" onClick={toggle} />
             <Image
               src="/images/logo.svg"
               alt="Giftlo"
               width={135}
               height={48}
-              className="w-[100px] md:w-[135px]"
+              className="w-[100px] md:w-[135px] cursor-pointer"
+              onClick={navigateToHome}
             />
           </div>
 
@@ -56,24 +60,27 @@ export default function OnboardingNavbar({ show, toggle }: any) {
 
               <History className="h-6 w-6 text-[#3B006B] md:hidden cursor-pointer" />
 
-              <ShoppingCart className="h-6 w-6 fill-[#3B006B] cursor-pointer" />
+              <div className="relative" onClick={navigateToCart}>
+                <div className="bg-danger text-white absolute z-100 rounded-full w-3 h-3 flex justify-center items-center right-0"> <span className="text-xxs">{cart?.items?.length ?? 0}</span></div>
+                <ShoppingCart className="h-6 w-6 fill-[#3B006B] cursor-pointer" />
+              </div>
 
               <Bell className="hidden md:block h-6 w-6 fill-[#3B006B] cursor-pointer" />
 
-              <CircleUserIcon className="h-6 w-6 text-[#3B006B] cursor-pointer" onClick={navigateToProfile}/>
+              <CircleUserIcon className="h-6 w-6 text-[#3B006B] cursor-pointer" onClick={navigateToProfile} />
             </div>
           </div>
         </div>
       </nav>
 
       {/* MOBILE SEARCH MODAL */}
-   <MobileSearchModal
-  open={isMobileSearchOpen}
-  onClose={() => setIsMobileSearchOpen(false)}
-  onSearch={(query) => {
-    console.log("Searching for:", query);
-  }}
-/>
+      <MobileSearchModal
+        open={isMobileSearchOpen}
+        onClose={() => setIsMobileSearchOpen(false)}
+        onSearch={(query) => {
+          console.log("Searching for:", query);
+        }}
+      />
 
     </>
   );

@@ -1,31 +1,26 @@
-import { Product } from '@/types/product';
+import { detailproduct } from '@/types/detailproduct'; // Import the UI type instead
 import { ProductGallery } from './ProductGallery';
-import { ProductInfo } from './ProductInfo'; // We will build this next
+import { ProductInfo } from './ProductInfo';
 import { ProductBreadcrumbs } from './ProductBreadCrumbs';
+import { Product } from '@/types/product';
+import PageNav from '../common/PageNav';
 
 interface ProductDetailProps {
-  product: Product;
+  product: Product; 
 }
 
-
 export function ProductDetail({ product }: ProductDetailProps) {
-  const breadcrumbItems = [
-    { label: 'AI Gift Recommendations', href: '/recommendations' },
-    { label: 'Item More Details', href: '#' },
-    { label: product.name },
-  ];
 
   return (
-    <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-6">
-      <ProductBreadcrumbs items={breadcrumbItems} />
+    <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-2 md:py-6">
+      <PageNav />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 xl:gap-4 items-stretch">
-        {/* Gallery */}
         <div className="lg:col-span-7 h-full">
+          {/* Ensure ProductGallery also accepts detailproduct.images (ProductImage[]) */}
           <ProductGallery images={product.images} />
         </div>
 
-        {/* Info */}
         <div className="lg:col-span-5 h-full flex">
           <ProductInfo product={product} />
         </div>

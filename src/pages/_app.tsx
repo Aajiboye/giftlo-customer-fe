@@ -13,6 +13,7 @@ import '@/styles/globals.css';
 import { Toaster } from 'sonner';
 import { ProductProvider } from '@/context/ProductContext';
 import { CentralProvider } from '@/context/CentralContext';
+import { CartProvider } from '@/context/CartContext';
 
 // Font
 const instrumentSans = Instrument_Sans({
@@ -46,12 +47,15 @@ export default function App({
         <div className={instrumentSans.variable}>
           <UserProvider>
             <CentralProvider>
+
               <ProductProvider>
-                {getLayout(
-                  <Layout pageTitle={pageProps?.pageTitle}>
-                    <Component {...pageProps} />
-                  </Layout>
-                )}
+                <CartProvider>
+                  {getLayout(
+                    <Layout pageTitle={pageProps?.pageTitle}>
+                      <Component {...pageProps} />
+                    </Layout>
+                  )}
+                </CartProvider>
               </ProductProvider>
             </CentralProvider>
 
@@ -66,6 +70,8 @@ export default function App({
               className: 'my-toast'
             }}
           />
+
+          
         </div>
       </WindowWidthProvider>
     </QueryClientProvider>

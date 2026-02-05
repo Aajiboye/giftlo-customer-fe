@@ -11,7 +11,6 @@ import ProductCard from "@/components/common/ProductCard";
 import { LazyBackgroundImage } from '@/components/common/lazyLoadingBg';
 import { Button } from "@/components/ui/button";
 import { useProduct } from "@/context/ProductContext";
-// import { widthClassesByIndex } from "@/types/product";
 import { ChevronsRight } from "lucide-react";
 
 const widthClassesByIndex: Record<number, string> = {
@@ -22,7 +21,6 @@ const widthClassesByIndex: Record<number, string> = {
 };
 
 const Page = () => {
-  const [show, toggle] = useToggle();
   const { categories, products, isFetchingCategories } = useProduct();
 
 
@@ -77,7 +75,7 @@ const Page = () => {
         {products
           ?.slice(0, 6)
           .map((product, index) => (
-            <ProductCard key={index} productName={product?.name} price={product?.price} unitsSold={product.quantitySold} imageUrl={product?.images[0]} />
+            <ProductCard key={index} product={product}/>
           ))}
       </div>
 

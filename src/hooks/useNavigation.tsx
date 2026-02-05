@@ -31,6 +31,14 @@ export const useNavigation = () => {
     push(`/home/profile`, `/home/profile`);
   };
 
+  const navigateToCart = () => {
+    push(`/home/profile/cart`, `/home/profile/cart`);
+  };
+
+  const navigateToViewProduct = (id: string) => {
+    push(`/home/products/${id}`, `/home/products/${id}`);
+  };
+
   const navigateBack = () => back();
 
 
@@ -45,7 +53,9 @@ export const useNavigation = () => {
     navigateToResetPassword,
     navigateToEmailSent,
     navigateToProfile,
-    navigateToProfileEdit
+    navigateToProfileEdit,
+    navigateToCart,
+    navigateToViewProduct
 
   };
 };

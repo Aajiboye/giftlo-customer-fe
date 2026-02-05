@@ -64,7 +64,7 @@ const Page = () => {
         {products
           ?.slice(0, 6)
           .map((product, index) => (
-            <ProductCard key={index} productName={product?.name} price={product?.price} unitsSold={product.quantitySold} imageUrl={product?.images[0]} />
+            <ProductCard key={index} product={product} />
           ))}
       </div>
 

@@ -1,12 +1,24 @@
 export type Currency = 'NGN' | 'USD';
 
 export interface CartItem {
-  id: string;
-  name: string;
-  seller: string;
-  price: number;
-  currency: Currency; 
-  quantity: number;
-  image: string;
-  isCustomized?: boolean;
+    "productId": string;
+    "name": string;
+    "brandName": string;
+    "price": number;
+    "image": string;
+    "quantity": number;
+    "_id": string;
+    "createdAt": string;
+    "updatedAt": string;
+}
+
+
+
+export interface Cart {
+  "customerId": string;
+  "items": CartItem[];
+  "_id": string;
+  "createdAt": string;
+  "updatedAt": string;
+  "__v": number
 }

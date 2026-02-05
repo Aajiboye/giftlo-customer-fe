@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/Sidebar/SidebarHome.jsx",
-    "src/components/Sidebar/classNames.js",
+    "src/components/Sidebar/classNames.js", "src/types/.detailproduct.ts",
   ],
   "exclude": [
     "node_modules"

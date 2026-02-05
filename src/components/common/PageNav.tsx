@@ -2,33 +2,53 @@
 
 import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 type RouteConfig = {
+  match: (pathname: string) => boolean;
   sectionHome: string;
   sectionLabel: string;
   pageLabel: string;
 };
 
-const ROUTE_MAP: Record<string, RouteConfig> = {
-  '/home': {
+const ROUTES: RouteConfig[] = [
+  {
+    match: (p) => p === '/home',
     sectionHome: '/',
     sectionLabel: '',
     pageLabel: 'Home',
   },
-  '/home/explore': {
+  {
+    match: (p) => p === '/home/explore',
     sectionHome: '/home',
     sectionLabel: 'Home',
     pageLabel: 'Explorer',
   },
-  // add more routes here
-};
+  {
+    match: (p) => p === '/home/profile',
+    sectionHome: '/home',
+    sectionLabel: 'Home',
+    pageLabel: 'Profile',
+  },
+  {
+    match: (p) => p === '/home/profile/cart',
+    sectionHome: '/home/profile',
+    sectionLabel: 'Profile',
+    pageLabel: 'Cart',
+  },
+  {
+    // Dynamic cart / product route
+    match: (p) => p?.startsWith('/home/product/'),
+    sectionHome: '/home/profile',
+    sectionLabel: 'Profile',
+    pageLabel: 'Cart',
+  },
+];
 
 export default function PageNav() {
   const pathname = usePathname();
-  const router = useRouter();
 
-  const config = ROUTE_MAP[pathname];
+  const config = ROUTES.find((route) => route.match(pathname));
 
   if (!config) return null;
 
@@ -37,11 +57,14 @@ export default function PageNav() {
       <ChevronLeft />
 
       {/* Section Home */}
-      <Link href={config.sectionHome} className="hover:text-black opacity-60 ">
+      <Link
+        href={config.sectionHome}
+        className="hover:text-black opacity-60"
+      >
         {config.sectionLabel}
       </Link>
 
-     {config.sectionLabel && <span>/</span>}
+      {config.sectionLabel && <span>/</span>}
 
       {/* Current Page */}
       <span className="font-medium text-secondary">

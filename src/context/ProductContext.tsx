@@ -15,6 +15,7 @@ import {
   Pagination,
   Product
 } from '@/types/product';
+import { sampleProduct } from '@/constants/product';
 
 
 type PageKey = 'products' | 'categories' | 'cart';
@@ -26,10 +27,11 @@ interface ProductContextType {
   products: Product[];
   pagination: Record<string, Pagination | undefined>;
   page: PageState;
-  setActiveProduct: React.Dispatch<React.SetStateAction<Product | null>>;
+  setActiveProduct: React.Dispatch<React.SetStateAction<Product>>;
   updatePage: (type: string, page: number) => void;
-  isFetchingCategories:boolean;
+  isFetchingCategories: boolean;
   isFetchingProducts: boolean;
+  activeProduct: Product;
 }
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
@@ -40,7 +42,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   const [pagination, setPagination] = useState({});
   const [page, setPage] = useState<PageState>({});
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
-  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
+  const [activeProduct, setActiveProduct] = useState<Product>(sampleProduct);
 
   const { user } = useUser();
   const { data: categoryData, isLoading: isFetchingCategories } = useFetchItem(
@@ -90,7 +92,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <ProductContext.Provider
       value={{
-        categories, products, pagination, page, setActiveProduct, updatePage, isFetchingProducts, isFetchingCategories
+        categories, products, pagination, page, setActiveProduct, updatePage, isFetchingProducts, isFetchingCategories, activeProduct
       }}
     >
       {children}

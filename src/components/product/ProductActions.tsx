@@ -2,44 +2,39 @@
 
 import { ShoppingBag, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCart } from '@/context/CartContext';
+import { Product } from '@/types/product';
 
 interface ProductActionsProps {
   isCustomizable: boolean;
-
-  onCustomize?: () => void;
-  onBuyNow?: () => void;
-  onAddToCart?: () => void;
-
+  product: Product
   disabled?: boolean;
 }
 
 
 export function ProductActions({
-  isCustomizable,
-  onCustomize,
-  onBuyNow,
-  onAddToCart,
-  disabled = false,
+  isCustomizable, product
 }: ProductActionsProps) {
+  const { addItemToCart, isModifyingCart } = useCart();
+
   return (
-    <div className="flex flex-col gap-8 ">
-      {isCustomizable && onCustomize && (
+    <div className="flex flex-col gap-2 ">
+      {isCustomizable && (
         <Button
           type="button"
-          onClick={onCustomize}
-          disabled={disabled}
+          onClick={() => console.log("customizing")}
+          disabled={!isCustomizable}
           className="w-full h-[50px] bg-[#3B006B] hover:bg-[#6213a3] text-white text-lg font-semibold rounded-2xl px-8 py-3  mb-8"
         >
           Customize Package
         </Button>
       )}
 
-      <div className="grid grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-2 gap-4 mt-1">
         <Button
           type="button"
           variant="outline"
-          disabled={disabled}
-          onClick={onBuyNow}
+          onClick={() => console.log(product?._id)} isLoading={isModifyingCart}
           className="h-[50px] border-2 border-[#3B006B] text-[#3B006B] hover:bg-[#3B006B] rounded-2xl font-bold"
         >
           <ShoppingBag className="mr-2 h-5 w-5" />
@@ -48,8 +43,7 @@ export function ProductActions({
 
         <Button
           type="button"
-          disabled={disabled}
-          onClick={onAddToCart}
+          onClick={() => addItemToCart(product?._id, 1)} isLoading={isModifyingCart}
           className="h-[50px] bg-[#3B006B] hover:bg-[#6213a3] text-white rounded-2xl font-bold"
         >
           <ShoppingCart className="mr-2 h-5 w-5" />
