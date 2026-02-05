@@ -18,7 +18,7 @@ export default function ProductCard({
 }: ProductCardProps) {
     const { name, price, quantitySold, images, _id } = product;
     const { addItemToCart, isModifyingCart } = useCart();
-    const { setActiveProduct } = useProduct();
+    const { setActiveProduct, isFetchingProducts } = useProduct();
     const { navigateToViewProduct } = useNavigation();
 
     const viewProduct = () => {

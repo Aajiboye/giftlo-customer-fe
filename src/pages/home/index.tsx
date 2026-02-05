@@ -3,6 +3,8 @@
 import images from "@/assets/images";
 import { SideBar } from "@/components";
 import CardLoader from "@/components/Loaders/CardLoader";
+import CategoryGridSkeleton, { CategoryLoader } from "@/components/Loaders/CategoryLoader";
+import ProductCardSkeleton from "@/components/Loaders/ProductCardSkeleton";
 import Rightbar from "@/components/Nav/Rightbar";
 import useToggle from "@/components/Nav/useToggle";
 import CategoryCard from "@/components/common/CategoryCard";
@@ -21,7 +23,7 @@ const widthClassesByIndex: Record<number, string> = {
 };
 
 const Page = () => {
-  const { categories, products, isFetchingCategories } = useProduct();
+  const { categories, products, isFetchingCategories, isFetchingProducts } = useProduct();
 
 
   return <div className="flex flex-col space-y-2">
@@ -40,12 +42,13 @@ const Page = () => {
 
     <div className="p-2 md:p-8">
       <p className="text-xl mb-2 text-secondary">Popular Categories</p>
-      <div className="flex justify-between flex-wrap">
-        {isFetchingCategories ? [...Array(10).keys()].map(() => <CardLoader />)
+      {isFetchingCategories ?  <CategoryGridSkeleton />
 
-          :
+        :
+        <div className="flex justify-between flex-wrap">
 
-          categories
+
+          {categories
             ?.slice(0, 6)
             .map((category, index) => (
               <CategoryCard
@@ -55,14 +58,14 @@ const Page = () => {
                 itemCount={7000}
                 widthClass={widthClassesByIndex[index]}
               />
-            ))
-
-
-        }
+            ))}
 
 
 
-      </div>
+
+
+
+        </div>}
     </div>
 
     <HeroBanner />
@@ -72,10 +75,12 @@ const Page = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
-        {products
+        {isFetchingProducts ?  [...Array(6).keys()].map(() => <ProductCardSkeleton />) : 
+        
+        products
           ?.slice(0, 6)
           .map((product, index) => (
-            <ProductCard key={index} product={product}/>
+            <ProductCard key={index} product={product} />
           ))}
       </div>
 

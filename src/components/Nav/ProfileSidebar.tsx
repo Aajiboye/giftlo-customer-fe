@@ -85,7 +85,7 @@ export default function ProfileSideBar() {
           <div className="flex flex-col p-4">
             <div className="">
               <p className="text-light font-light text-sm">Good Morning</p>
-              <p className="font-medium text-lg">Vaughan Olamide Isaac</p>
+              <p className="font-medium text-lg">{user?.fullName || `${user?.firstName + ' ' + user?.lastName}` || 'N/A'}</p>
             </div>
             {menu.map((section, idx) => (
               <div key={idx} className="my-5">

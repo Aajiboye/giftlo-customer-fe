@@ -1,8 +1,7 @@
-// src/components/product/CartItemCard.tsx
 import React from 'react';
 import Image from 'next/image';
 import { Minus, Plus, Trash2 } from 'lucide-react';
-import { CartItem } from '@/types/cart'; // Ensure this points to your cart.ts
+import { CartItem } from '@/types/cart';
 import { formatPrice } from '@/utilities/format.helper';
 import { Zap } from 'lucide-react';
 import { useCart } from '@/context/CartContext';

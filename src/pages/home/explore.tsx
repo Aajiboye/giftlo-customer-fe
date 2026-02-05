@@ -4,13 +4,15 @@ import images from "@/assets/images";
 import CategoryCard from "@/components/common/CategoryCard";
 import Pagination from "@/components/common/Pagination";
 import ProductCard from "@/components/common/ProductCard";
+import CategoryGridSkeleton from "@/components/Loaders/CategoryLoader";
+import ProductCardSkeleton from "@/components/Loaders/ProductCardSkeleton";
 import { useProduct } from "@/context/ProductContext";
 import { widthClassesByIndex } from "@/types/product";
 import { useState } from "react";
 
 
 const Page = () => {
-    const { categories, products, pagination, updatePage } = useProduct();
+    const { categories, products, pagination, updatePage, isFetchingProducts, isFetchingCategories } = useProduct();
 
     const prodPagination = pagination.products;
     const currentPage = prodPagination?.page ?? 1;
@@ -30,11 +32,12 @@ const Page = () => {
 
         <div className="p-2 md:p-8">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {products
-                    ?.slice(0, 6)
-                    .map((product, index) => (
-                        <ProductCard key={index} product={product} />
-                    ))}
+                {isFetchingProducts ? [...Array(8).keys()].map(() => <ProductCardSkeleton />) :
+
+                    products
+                        .map((product, index) => (
+                            <ProductCard key={index} product={product} />
+                        ))}
             </div>
 
 
@@ -52,22 +55,27 @@ const Page = () => {
 
 
         </div>
-
         <div className="p-2 md:p-8">
             <p className="text-xl mb-2 text-secondary">Popular Categories</p>
-            <div className="flex justify-between flex-wrap">
-                {categories
-                    ?.slice(0, 6)
-                    .map((category, index) => (
-                        <CategoryCard
-                            key={category._id ?? index}
-                            text={category.title}
-                            imageSrc={category.categoryImageUrl}
-                            itemCount={7000}
-                            widthClass={widthClassesByIndex[index]}
-                        />
-                    ))}
-            </div>
+            {isFetchingCategories ? <CategoryGridSkeleton />
+
+                :
+                <div className="flex justify-between flex-wrap">
+
+
+                    {categories
+                        ?.slice(0, 6)
+                        .map((category, index) => (
+                            <CategoryCard
+                                key={category._id ?? index}
+                                text={category.title}
+                                imageSrc={category.categoryImageUrl}
+                                itemCount={7000}
+                                widthClass={widthClassesByIndex[index]}
+                            />
+                        ))}
+
+                </div>}
         </div>
     </div>
 };

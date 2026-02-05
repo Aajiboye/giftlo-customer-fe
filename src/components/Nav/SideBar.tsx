@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useUser } from '@/context/UserContext';
 import { useProduct } from '@/context/ProductContext';
 import { DynamicIcon } from '../common/DynamicIcon';
-import CardLoader from '../Loaders/CardLoader';
-import CategoryLoader from '../Loaders/CategoryLoader';
+import SimpleCardLoader from '../Loaders/SimpleCardLoader';
 
 
 
@@ -20,7 +19,7 @@ export default function SideBar() {
     <div>
       <div className="h-full bg-sidebar_bg text-sidebar_text flex flex-col py-4">
           <div className="flex flex-col">
-            {isFetchingCategories && [...Array(10).keys()].map(() => <CategoryLoader />)}
+            {isFetchingCategories && [...Array(10).keys()].map(() => <SimpleCardLoader />)}
 
             {categories.map((item, index) => {
               const disabled = false;

@@ -44,7 +44,7 @@ export default function CartPage() {
               </div>
 
               <div className="space-y-0 lg:space-y-4">
-                {isFetchingCartItems ? [0].map(() => <CartLoader />)
+                {isFetchingCartItems ? [...Array(3).keys()].map(() => <CartLoader />)
 
                   : cart?.items?.map((item: CartItem) => (
                     <CartItemCard
