@@ -1,6 +1,6 @@
 'use client';
 
-import {useFetchItem } from '@/utilities/useQuery';
+import {getDataItem, useFetchItem } from '@/utilities/useQuery';
 import React, {
   createContext,
   useContext,
@@ -10,6 +10,9 @@ import React, {
   useMemo
 } from 'react';
 import { useUser } from './UserContext';
+import { Package } from '@/types/central';
+import { UseMutateAsyncFunction, useQueryClient } from "@tanstack/react-query";
+
 
 
 interface CentralContextType {
@@ -21,8 +24,8 @@ interface CentralContextType {
   setActiveState: React.Dispatch<React.SetStateAction<string>>;
   isFetchingStates:boolean;
   isFetchingLGA:boolean;
-
-  
+  packages: Package[];
+  fetchDeliverFee: (lga:string) => Promise<number>;
 }
 
 const CentralContext = createContext<CentralContextType | undefined>(undefined);
@@ -33,6 +36,8 @@ export const CentralProvider: React.FC<{ children: ReactNode }> = ({
   
   const [activeState, setActiveState] = useState<string>("");
   const [activeLga, setActiveLga] = useState<string>("");
+  const queryClient = useQueryClient();
+
 
   const { user } = useUser();
  const { data: statesData, isLoading: isFetchingStates } = useFetchItem(
@@ -46,6 +51,12 @@ export const CentralProvider: React.FC<{ children: ReactNode }> = ({
     ['/v1/locations/lga', activeState],
     `/locations/lga/${activeState}`,
     !!activeState
+  );
+
+  const { data: packagesData, isLoading: isFetchingPackages } = useFetchItem(
+    'app',
+    ['/v1/locations/lga'],
+    `/admin/packages`,
   );
 
   const states: string[] = useMemo(() => {
@@ -66,14 +77,34 @@ export const CentralProvider: React.FC<{ children: ReactNode }> = ({
     return [];
   }, [lgaData]);
 
-  // console.log({lgaData, activeState, statesData, lgas})
+  const packages: Package[] = useMemo(() => {
+    if (packagesData?.length) {
+      return packagesData;
+    }
+    return [];
+  }, [packagesData]);
 
+  const fetchDeliverFee = async (lga: string) : Promise<number> => {
+    try {
+      const data = await queryClient.fetchQuery({
+        queryKey: ['/v1/logistics/delivery-rate', activeState, lga],
+        queryFn: () => getDataItem('app', `/logistics/delivery-rate?state=${activeState}&lga=${lga}`)
+      });
+
+      console.log({deliveryFee: data})
+      
+      return data?.cost;
+    } catch (error) {
+      console.error("Failed to fetch business data", error);
+      throw error;
+    }
+  };
 
   
   return (
     <CentralContext.Provider
       value={{
-        states, lgas, activeLga, activeState, setActiveState, isFetchingLGA, isFetchingStates
+        states, lgas, activeLga, activeState, setActiveState, isFetchingLGA, isFetchingStates, packages, fetchDeliverFee
       }}
     >
       {children}

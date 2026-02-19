@@ -18,7 +18,7 @@ import { useCart } from "@/context/CartContext";
 export default function OnboardingNavbar({ show, toggle }: any) {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const { navigateToProfile, navigateToHome, navigateToCart } = useNavigation();
-  const { cart } = useCart();
+  const { cart, totalQuantity } = useCart();
 
 
   return (
@@ -61,7 +61,7 @@ export default function OnboardingNavbar({ show, toggle }: any) {
               <History className="h-6 w-6 text-[#3B006B] md:hidden cursor-pointer" />
 
               <div className="relative" onClick={navigateToCart}>
-                <div className="bg-danger text-white absolute z-100 rounded-full w-3 h-3 flex justify-center items-center right-0"> <span className="text-xxs">{cart?.items?.length ?? 0}</span></div>
+                <div className="bg-danger text-white absolute z-100 rounded-full w-3 h-3 flex justify-center items-center right-0"> <span className="text-xxs">{totalQuantity ?? 0}</span></div>
                 <ShoppingCart className="h-6 w-6 fill-[#3B006B] cursor-pointer" />
               </div>
 

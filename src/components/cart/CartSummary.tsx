@@ -1,8 +1,9 @@
 // src/components/cart/CartSummary.tsx
 import React from 'react';
-import { formatPrice } from '@/utilities/format.helper';
+import { formatPrice, formatKoboToNaira } from '@/utilities/format.helper';
 import { Currency } from '@/types/detailproduct';
 import { Lightbulb,Bolt } from 'lucide-react';
+import { useNavigation } from '@/hooks/useNavigation';
 interface CartSummaryProps {
   totalItems: number;
   subtotal: number;
@@ -14,7 +15,9 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   subtotal,
   currency,
 }) => {
-  const formattedPrice = formatPrice(subtotal, currency);
+  const formattedPrice =  formatKoboToNaira(subtotal);
+  const {navigateToCheckout} = useNavigation();
+  // formatPrice(subtotal, currency);
 
   return (
     <div className="flex flex-col">
@@ -40,6 +43,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           <button
             type="button"
             className="w-full bg-[#3B006B] hover:bg-[#2d0052] text-white font-bold py-4 rounded-xl transition-all shadow-md active:scale-[0.98]"
+            onClick={navigateToCheckout}
           >
             Checkout {formattedPrice}
           </button>

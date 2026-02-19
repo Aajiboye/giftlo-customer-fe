@@ -35,6 +35,7 @@ interface CartContextType {
   totalQuantity: number;
   totalAmount: number;
   deleteProductFromCart: (productId: string) => void;
+  refetchUserCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -149,7 +150,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <CartContext.Provider
       value={{
-        cart, isFetchingCartItems, addItemToCart, isModifyingCart, removeOneItemFromCart, addOneItemToCart, totalAmount, totalQuantity, deleteProductFromCart
+        cart, isFetchingCartItems, addItemToCart, isModifyingCart, removeOneItemFromCart, addOneItemToCart, totalAmount, totalQuantity, deleteProductFromCart, refetchUserCart
       }}
     >
       {children}

@@ -39,6 +39,12 @@ export const useNavigation = () => {
     push(`/home/products/${id}`, `/home/products/${id}`);
   };
 
+  const navigateToCheckout = () => {
+    push(`/home/profile/cart/checkout`, `/home/profile/cart/checkout`);
+  };
+
+  
+
   const navigateBack = () => back();
 
 
@@ -55,6 +61,7 @@ export const useNavigation = () => {
     navigateToProfile,
     navigateToProfileEdit,
     navigateToCart,
+    navigateToCheckout,
     navigateToViewProduct
 
   };

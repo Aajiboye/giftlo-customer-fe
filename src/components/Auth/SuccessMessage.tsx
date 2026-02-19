@@ -36,12 +36,12 @@ export default function SuccessMessage({ onClose, title, description, isSuccess 
 
 
       {/* Okay Button */}
-      <div className="flex justify-between gap-2">
+      <div className={cancelBtn ? `flex justify-between gap-2 mt-2`: 'text-center mt-2'}>
         {cancelBtn && <Button className="w-full mt-6 py-2 rounded-lg font-semibold" variant={'outline'} onClick={() => onClose?.()}>
           Cancel
         </Button>}
 
-        <Button className="w-full mt-6 bg-sidebar_bg text-white py-2 rounded-lg font-semibold" onClick={() => onButtonClick ? onButtonClick() : onClose?.()} isLoading={isLoading}>
+        <Button variant={'secondary'} onClick={() => onButtonClick ? onButtonClick() : onClose?.()} isLoading={isLoading}>
           {btnText || "Okay"}
         </Button>
       </div>

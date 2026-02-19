@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { CartItem } from '@/types/cart';
-import { formatPrice } from '@/utilities/format.helper';
+import { formatKoboToNaira, formatPrice } from '@/utilities/format.helper';
 import { Zap } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { Button } from '../ui/button';
@@ -55,7 +55,8 @@ export const CartItemCard: React.FC<CartItemCardProps> = ({
 
           <div className="flex items-center justify-between mt-2">
             <span className="text-lg sm:text-xl font-bold text-gray-900">
-              {formatPrice(item.price, "NGN")}
+              {/* {formatPrice(item.price, "NGN")} */}
+              {formatKoboToNaira(item?.price)}
             </span>
 
             <div className="flex items-center border border-gray-100 rounded-lg bg-gray-50/50 overflow-hidden">

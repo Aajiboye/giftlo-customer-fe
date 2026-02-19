@@ -1,4 +1,4 @@
-import { formatCount } from "@/utilities/format.helper";
+import { formatCount, formatKoboToNaira } from "@/utilities/format.helper";
 import { Heart } from "lucide-react";
 import { Button } from "../ui/button";
 import { CartArrow, CartRoller, GiftBoldIcon } from "@/assets/svg";
@@ -47,7 +47,7 @@ export default function ProductCard({
                 <div className="flex justify-between">
                     <div className="mt-2">
                         <p className="text-lg font-semibold text-secondary">
-                            ₦{price.toLocaleString()}
+                            {formatKoboToNaira(price)}
                         </p>
                         <div className="flex text-gray-500 items-center">
                             <CartArrow width={22} height={22} />

@@ -150,7 +150,7 @@ export function usePutItem(
   });
 }
 
-async function getDataItem(
+export async function getDataItem(
   service: ServiceType,
   path: string,
   additionalHeaders: Record<string, string> = {}

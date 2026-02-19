@@ -2,17 +2,14 @@ import { Star, Lightbulb } from 'lucide-react';
 import { ProductActions } from './ProductActions';
 import { Product } from '@/types/product';
 import { useCart } from '@/context/CartContext';
+import { formatKoboToNaira } from '@/utilities/format.helper';
 
 interface ProductInfoProps {
   product: Product;
 }
 
 export function ProductInfo({ product }: ProductInfoProps) {
-  const formattedPrice = new Intl.NumberFormat('en-NG', {
-    style: 'currency',
-    currency: 'NGN', // Dynamic currency from type
-    minimumFractionDigits: 0,
-  }).format(product.price);
+  
   const { addItemToCart, isModifyingCart } = useCart();
 
 
@@ -36,7 +33,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         </div>
 
         <h2 className="text-4xl font-medium text-[#3D3D3D]">
-          {formattedPrice}
+          {formatKoboToNaira(product?.price)}
         </h2>
 
         <div className="flex items-center gap-2 text-yellow-700 bg-yellow-50 w-fit px-3 py-1 rounded-full border">
